@@ -1,0 +1,137 @@
+// title
+title Collaborative Project Management & Gamification Data Model
+
+// define tables
+
+user [icon: user, color: yellow]{
+  userId string pk
+  userName string
+  email string
+  password string
+  authToken string
+  last_login datetime
+  xp_points number
+  rank number
+  isActive boolean
+}
+
+OrganizationMembership [icon: users, color: orange]{
+  id string pk
+  userId string fk
+  organizationId string fk
+  role string
+  joinedAt date
+  isActive boolean
+}
+
+Organization [icon: globe, color: blue]{
+  organizationId string pk
+  name string
+  description string
+  createdBy string fk
+  status string
+  isActive boolean
+}
+
+OrganizationMember [icon: user-check, color: teal]{
+  id string pk
+  organizationId string fk
+  userId string fk
+  role string
+  joinedAt date
+  isActive boolean
+}
+
+project [icon: folder, color: blue]{
+  project_id string pk
+  projecName string
+  description string
+  responsible_person string fk
+  createdBy string fk
+  organizationId string fk
+  status string
+  priority string
+  startDate date
+  endDate date
+  progress number
+  isActive boolean
+}
+
+ProjectMember [icon: user-plus, color: purple]{
+  id string pk
+  projectId string fk
+  userId string fk
+  role string
+  joinedAt date
+  isActive boolean
+  addedBy string fk
+}
+
+DocumentationSchema [icon: file-text, color: lightblue]{
+  id string pk
+  projectId string fk
+  title string
+  link string
+  description string
+  uploadedAt date
+  uploadedBy string fk
+}
+
+Task [icon: check-square, color: green]{
+  task_id string pk
+  taskName string
+  description string
+  priority string
+  responsiblePerson string fk
+  createdBy string fk
+  deadline date
+  status string
+  projectId string fk
+  parentTaskId string fk
+}
+
+Documentation [icon: file, color: gray]{
+  id string pk
+  taskId string fk
+  title string
+  link string
+}
+
+// define relationships
+
+// User and OrganizationMembership (many-to-many)
+user.userId <> OrganizationMembership.userId
+Organization.organizationId <> OrganizationMembership.organizationId
+
+// User and OrganizationMember (many-to-many)
+user.userId <> OrganizationMember.userId
+Organization.organizationId <> OrganizationMember.organizationId
+
+// Organization createdBy User (many-to-one)
+Organization.createdBy > user.userId
+
+// Project and Organization (many-to-one)
+project.organizationId > Organization.organizationId
+
+// Project responsible_person and createdBy (many-to-one to User)
+project.responsible_person > user.userId
+project.createdBy > user.userId
+
+// ProjectMember and Project (many-to-one)
+ProjectMember.projectId > project.project_id
+ProjectMember.userId > user.userId
+ProjectMember.addedBy > user.userId
+
+// DocumentationSchema and Project (many-to-one)
+DocumentationSchema.projectId > project.project_id
+DocumentationSchema.uploadedBy > user.userId
+
+// Task and Project (many-to-one)
+Task.projectId > project.project_id
+
+// Task responsiblePerson and createdBy (many-to-one to User)
+Task.responsiblePerson > user.userId
+Task.createdBy > user.userId
+
+// Task parentTaskId (self-referencing)
+Task.parentTaskId > Task.task_id

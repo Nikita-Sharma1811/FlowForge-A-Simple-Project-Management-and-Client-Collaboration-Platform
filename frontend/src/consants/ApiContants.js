@@ -1,0 +1,31 @@
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:3001";
+
+export default API_BASE_URL;
+export const API_ENDPOINTS = {
+  LOGIN: `${API_BASE_URL}/user/login`,
+  REGISTER: `${API_BASE_URL}/user/register`,
+  PROFILE: `${API_BASE_URL}/user/profile`,
+  USER_ORGANIZATIONS: `${API_BASE_URL}/user/organizations`,
+  MY_PROJECTS: `${API_BASE_URL}/user/getMyProjects`,
+  MY_TASKS: `${API_BASE_URL}/user/getUserReseponsibleTasks`,
+  ORGANIZATION_CREATE: `${API_BASE_URL}/organisation/createOrganization`,
+  MY_ORGANIZATIONS: `${API_BASE_URL}/organisation/my-organizations`,
+  ORGANIZATION_MEMBERS: (id) => `${API_BASE_URL}/organisation/${id}/members`,
+  PROJECTS: `${API_BASE_URL}/projects`,
+  ORGANIZATION_PROJECTS: (organizationId) => `${API_BASE_URL}/projects/organization/${organizationId}`,
+  PROJECT_BY_ID: (id) => `${API_BASE_URL}/projects/${id}`,
+  PROJECT_MEMBERS: (id) => `${API_BASE_URL}/projects/${id}/members`,
+  PROJECT_STATUS: (id) => `${API_BASE_URL}/projects/${id}/status`,
+  PROJECT_VISIBILITY: (id) => `${API_BASE_URL}/projects/${id}/visibility`,
+  TASKS: `${API_BASE_URL}/tasks`,
+  TASK_BY_ID: (id) => `${API_BASE_URL}/tasks/${id}`,
+  PROJECT_TASKS: (projectId) => `${API_BASE_URL}/tasks/project/${projectId}`,
+  SUBTASKS: (parentTaskId) => `${API_BASE_URL}/tasks/subtasks/${parentTaskId}`,
+  ASSIGN_TASK: (id) => `${API_BASE_URL}/tasks/${id}/assign`,
+  TASK_STATUS: (id) => `${API_BASE_URL}/tasks/${id}/status`,
+  COMMENTS: `${API_BASE_URL}/comments`,
+  COMMENTS_FOR: (hostId) => `${API_BASE_URL}/comments/${hostId}`,
+  COMMENT_BY_ID: (commentId) => `${API_BASE_URL}/comments/${commentId}`,
+  COMMENT_DELETE: (commentId) => `${API_BASE_URL}/comments/${commentId}/delete`,
+  COMMENT_LIKE: (commentId) => `${API_BASE_URL}/comments/${commentId}/like`,
+};
