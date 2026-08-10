@@ -228,7 +228,6 @@ backend/
 
 ### 1. Clone the Repository
 
-```bash
 git clone <your-github-repository-url>
 cd FlowForge
 2. Install Backend Dependencies
@@ -252,33 +251,3 @@ cd frontend
 npm install
 npm run dev
 The frontend will run on:
-
-http://localhost:5173
-Open the frontend URL in the browser to use FlowForge.
-
-About
-
-FlowForge is a real-time project management and client collaboration platform designed for small teams.
-
-Resources
-Readme
-Activity
-Stars
-0 stars
-Watchers
-0 watching
-Forks
-0 forks
-Releases
-No releases published
-Create a new release
-Packages
-No packages published
-Publish your first package
-Contributors
-1
- (1)
-@Nikita-Sharma1811
-Nikita-Sharma1811Nikita
-Footer
-© 2026 GitHub, Inc.
